@@ -21,6 +21,8 @@ The application is capable of :
 - Validating data entry and displaying error messages accordingly.
 
 ![No image](https://github.com/Pierrotpsy/Student-List/blob/main/media/screen_studentlist.PNG)
+
+Video demonstration : (https://github.com/Pierrotpsy/Student-List/blob/main/media/Student-list%20app%20demo.mp4)
 ## Non-implemented features
 
 - Images have been working weirdly for me, with some students being able to display any image, while differents students trying to display the same picture with the same path can not.
