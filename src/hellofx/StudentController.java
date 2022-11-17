@@ -109,7 +109,6 @@ public class StudentController implements Initializable {
     private ImageView view_image;
 
     private DBManager manager = new DBManager();
-    private EmailValidator validator = EmailValidator.getInstance();
     
     /**
      * 
@@ -134,6 +133,19 @@ public class StudentController implements Initializable {
 	}
 	
 	/**
+	 * Function to verify email.
+	 * @param email
+	 * @return boolean
+	 */
+	public static boolean isValidEmail(String email) {
+	    // create the EmailValidator instance
+		EmailValidator validator = EmailValidator.getInstance();
+
+	    // check for valid email addresses using isValid method
+		return validator.isValid(email);
+	}
+	
+	/**
 	 * 
 	 * Function that displays a chosen student on the right side of the app screen in all the correct text boxes.
 	 * @param selectedStudent Student to display
@@ -150,6 +162,7 @@ public class StudentController implements Initializable {
 			txt_comments.setText(selectedStudent.getComments());
 			Image image = new Image(selectedStudent.getPhoto());
 			view_image.setImage(image);
+			System.out.println(isValidEmail(txt_email.getText()));
 		}
 	}
 	
@@ -206,7 +219,7 @@ public class StudentController implements Initializable {
 		} else if(box_gender.getValue() == null) {
 			lbl_errors.setText("Please choose a gender");
 			return;
-		} else if(validator.isValid(txt_email.getText())) {
+		} else if(!isValidEmail(txt_email.getText())) {
 			lbl_errors.setText("Invalid email");
 			return;
 		} else if((picker_date.getValue().getYear() < 1980 || picker_date.getValue().getYear() > 2000)) {
@@ -233,7 +246,7 @@ public class StudentController implements Initializable {
 		} else if(box_gender.getValue() == null) {
 			lbl_errors.setText("Please choose a gender");
 			return;
-		} else if(validator.isValid(txt_email.getText())) {
+		} else if(!isValidEmail(txt_email.getText())) {
 			lbl_errors.setText("Invalid email");
 			return;
 		} else if((picker_date.getValue().getYear() < 1980 || picker_date.getValue().getYear() > 2000)) {
