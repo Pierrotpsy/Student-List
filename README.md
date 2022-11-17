@@ -37,5 +37,3 @@ Video demonstration : (https://github.com/Pierrotpsy/Student-List/blob/main/medi
 - Add stock photo when no picture found.
 - Add other informations to each student
 - Multiply interfaces to increase user-friendliness.
-
-## Further development
