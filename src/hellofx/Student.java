@@ -17,6 +17,17 @@ public class Student {
 	
 	private EmailValidator validator = EmailValidator.getInstance();
 	
+	/**
+	 * Simple constructor for Student object.
+	 * @param Id
+	 * @param Name
+	 * @param Gender
+	 * @param Email
+	 * @param Birthdate
+	 * @param Photo
+	 * @param Mark
+	 * @param Comments
+	 */
 	public Student(int Id, String Name, String Gender, String Email, LocalDate Birthdate, String Photo, double Mark, String Comments) {
 		this.Id = Id;
 		this.Name = Name;
@@ -29,78 +40,138 @@ public class Student {
 		this.Comments = Comments;
 	}
 	
+	/**
+	 * Getter for Student id.
+	 * @return Id
+	 */
 	public int getId() {
-		return Id;
+		return this.Id;
 	}
 	
+	/**
+	 * Getter for Student name.
+	 * @return Id
+	 */
 	public String getName() {
-		return Name;
+		return this.Name;
 	}
 	
+	/**
+	 * Getter for Student gender.
+	 * @return Gender
+	 */
 	public String getGender() {
-		return Gender;
+		return this.Gender;
+	}
+
+	/**
+	 * Getter for Student email.
+	 * @return Email
+	 */
+	public String getEmail() {
+		return this.Email;
+	}
+
+	/**
+	 * Getter for Student birth date.
+	 * @return Birthdate
+	 */
+	public LocalDate getBirthdate() {
+		return this.Birthdate;
+	}
+
+	/**
+	 * Getter for Student photo path.
+	 * @return Photo
+	 */
+	public String getPhoto() {
+		return this.Photo;
+	}
+
+	/**
+	 * Getter for Student mark.
+	 * @return Mark
+	 */
+	public double getMark() {
+		return this.Mark;
+	}
+
+	/**
+	 * Getter for Student comments.
+	 * @return Comments
+	 */
+	public String getComments() {
+		return this.Comments;
 	}
 	
+	/**
+	 * Setter for Student id.
+	 * @param Id
+	 */
 	public void setId(int Id) {
 		this.Id = Id;
 	}
 	
+	/**
+	 * Setter for Student name.
+	 * @param Name
+	 */
 	public void setName(String Name) {
 		this.Name = Name;
 	}
 	
-	public boolean setGender(String Gender) {
-		if(Gender == "Male" || Gender == "Female") {
-			this.Gender = Gender;
-			return true;
-		}
-		return false;
-	}
-	
-	public String getEmail() {
-		return Email;
+	/**
+	 * Setter for Student gender.
+	 * @param Gender
+	 */
+	public void setGender(String Gender) {
+		this.Gender = Gender;
 	}
 
-	public boolean setEmail(String Email) {
-		if(validator.isValid(Email)) {
-			this.Email = Email;
-			return true;
-		}
-		return false;
+	/**
+	 * Setter for Student email.
+	 * @param Email
+	 */
+	public void setEmail(String Email) {
+		this.Email = Email;
 	}
 
-	public LocalDate getBirthdate() {
-		return Birthdate;
+	/**
+	 * Setter for Student birthdate.
+	 * @param Birthdate
+	 */
+	public void setBirthdate(LocalDate Birthdate) {
+		this.Birthdate = Birthdate;
 	}
 
-	public void setBirthdate(LocalDate birthdate) {
-		Birthdate = birthdate;
-	}
-
-	public String getPhoto() {
-		return Photo;
-	}
-
+	/**
+	 * Setter for Student photo.
+	 * @param photo
+	 */
 	public void setPhoto(String photo) {
-		Photo = photo;
+		this.Photo = photo;
 	}
 
-	public double getMark() {
-		return Mark;
+	/**
+	 * Setter for Student mark;
+	 * @param mark
+	 */
+	public void setMark(double Mark) {
+		this.Mark = Mark;
 	}
 
-	public void setMark(double mark) {
-		Mark = mark;
-	}
-
-	public String getComments() {
-		return Comments;
-	}
-
+	/**
+	 * Setter for Student comments.
+	 * @param comments
+	 */
 	public void setComments(String comments) {
-		Comments = comments;
+		this.Comments = comments;
 	}
 
+	/**
+	 * toString method for the Student class.
+	 */
+	@Override
 	public String toString() {
 		return this.Name;
 	}

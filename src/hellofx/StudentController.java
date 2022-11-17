@@ -22,6 +22,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * 
+ * @author Maxime Merlin
+ * Controller for GUI.
+ *
+ */
 public class StudentController implements Initializable {
 
     @FXML
@@ -105,6 +111,11 @@ public class StudentController implements Initializable {
     private DBManager manager = new DBManager();
     private EmailValidator validator = EmailValidator.getInstance();
     
+    /**
+     * 
+     * Function to initialize the GUI with all its necessary components.
+     * 
+     */
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		List<String> gvalues = new ArrayList<String>();
@@ -121,6 +132,13 @@ public class StudentController implements Initializable {
 		 students_list.getSelectionModel().selectedItemProperty().addListener(e->displayStudentDetails(students_list.getSelectionModel().getSelectedItem()));
 
 	}
+	
+	/**
+	 * 
+	 * Function that displays a chosen student on the right side of the app screen in all the correct text boxes.
+	 * @param selectedStudent Student to display
+	 * 
+	 */
 	private void displayStudentDetails(Student selectedStudent) {
 		if(selectedStudent!=null){
 			txt_name.setText(selectedStudent.getName());
@@ -135,6 +153,11 @@ public class StudentController implements Initializable {
 		}
 	}
 	
+	/**
+	 * 
+	 * Function that calls to the database manager to get all the students in it.
+	 * 
+	 */
 	public void fetchStudents() {
 		List<Student> listStudents=manager.loadStudents();
 		if (listStudents!=null) {
@@ -145,6 +168,10 @@ public class StudentController implements Initializable {
 		txt_average.setText(String.format("%.3f", manager.meanMarks()));
 	}
 	
+	/**
+	 * Function that clears all the fillable fields on the right side of the app screen. 
+	 * Called with 'New' button.
+	 */
 	public void onNew(){
 		students_list.getSelectionModel().clearSelection();
 		 this.txt_name.setText(null);
@@ -157,12 +184,21 @@ public class StudentController implements Initializable {
 		 txt_comments.setText(null);
 	}
 	
+	/**
+	 * Function that selects and displays the first student in the list.
+	 * Called with 'Cancel' button.
+	 */
 	public void onCancel(){
 		students_list.getSelectionModel().selectFirst();
 		displayStudentDetails(students_list.getSelectionModel().getSelectedItem());
 		
 	}
 	
+	/**
+	 * Function that saves all the information on the right side of the screen in the database with a new student by calling the manager.
+	 * Does some error checking to verify entered data.
+	 * Called with 'Save' button.
+	 */
 	public void onSave() {
 		if(txt_name.getText() == null || txt_name.getText() == "") {
 			lbl_errors.setText("Please enter a name");
@@ -185,6 +221,11 @@ public class StudentController implements Initializable {
 		 fetchStudents();
 	}
 	
+	/**
+	 * Function that saves all the information on the right side of the screen in the database with the selected student by calling the manager.
+	 * Does some error checking to verify entered data.
+	 * Called with 'Edit' button.
+	 */
 	public void onEdit() {
 		if(txt_name.getText() == null || txt_name.getText() == "") {
 			lbl_errors.setText("Please enter a name");
@@ -203,11 +244,21 @@ public class StudentController implements Initializable {
 			return;
 		}
 		int id = students_list.getSelectionModel().getSelectedItem().getId();
-		Student s= new Student(id, txt_name.getText(),box_gender.getValue(), txt_email.getText(), picker_date.getValue(), txt_path.getText(), Double.valueOf(txt_mark.getText()), txt_comments.getText());
-		manager.updateStudent(s);
+		students_list.getSelectionModel().getSelectedItem().setName(txt_name.getText());
+		students_list.getSelectionModel().getSelectedItem().setGender(box_gender.getValue());
+		students_list.getSelectionModel().getSelectedItem().setEmail(txt_email.getText());
+		students_list.getSelectionModel().getSelectedItem().setBirthdate(picker_date.getValue());
+		students_list.getSelectionModel().getSelectedItem().setPhoto(txt_path.getText());
+		students_list.getSelectionModel().getSelectedItem().setMark(Double.valueOf(txt_mark.getText()));
+		students_list.getSelectionModel().getSelectedItem().setComments(txt_comments.getText());;
+		manager.updateStudent(students_list.getSelectionModel().getSelectedItem());
 		fetchStudents();
 	}
 	
+	/**
+	 * Function that deletes a selected student by calling the manager.
+	 * Called with 'Delete' button.
+	 */
 	public void onDelete() {
 		int id = students_list.getSelectionModel().getSelectedItem().getId();
 		manager.deleteStudent(id);
