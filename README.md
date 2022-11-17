@@ -25,4 +25,13 @@ The application is capable of :
 
 - Images have been working weirdly for me, with some students being able to display any image, while differents students trying to display the same picture with the same path can not.
 
+- In case of image path not found, the code will just throw a long java error instead of a controlled exception.
+
 ## Further development
+
+- Improve GUI.
+- Improve error management.
+- Consolidate and secure database to avoid SQL injection.
+- Add stock photo when no picture found.
+- Add other informations to each student
+- Multiply interfaces to increase user-friendliness.
